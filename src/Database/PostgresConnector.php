@@ -6,8 +6,8 @@ use Exception;
 use Illuminate\Database\Connectors\PostgresConnector as DefaultPostgresConnector;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use Jetcod\DBAuth\Auth\RDSTokenProvider;
 use PDO;
-use Pixelvide\DBAuth\Auth\RDSTokenProvider;
 
 class PostgresConnector extends DefaultPostgresConnector
 {

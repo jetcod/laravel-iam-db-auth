@@ -5,8 +5,8 @@ namespace Jetcod\DBAuth;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
-use Pixelvide\DBAuth\Database\MySqlConnector;
-use Pixelvide\DBAuth\Database\PostgresConnector;
+use Jetcod\DBAuth\Database\MySqlConnector;
+use Jetcod\DBAuth\Database\PostgresConnector;
 
 class IamDatabaseConnectorProvider extends ServiceProvider
 {
@@ -31,7 +31,7 @@ class IamDatabaseConnectorProvider extends ServiceProvider
 
                         $certPath = Config::get(
                             'database.connections.' . $key . '.sslrootcert',
-                            realpath(base_path('vendor/pixelvide/laravel-iam-db-auth/certs/global-bundle.pem'))
+                            realpath(base_path('vendor/jetcod/laravel-iam-db-auth/certs/global-bundle.pem'))
                         );
 
                         switch (PHP_OS) {
