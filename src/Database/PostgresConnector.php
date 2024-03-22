@@ -34,23 +34,15 @@ class PostgresConnector extends DefaultPostgresConnector
             Arr::get($config, 'username'),
         ];
 
-        /*
-        if (!(Arr::has($config, 'aws_profile'))) {
-            throw new InvalidArgumentException('An AWS Profile must be specified.');
-        }
-        */
-
         $token_provider = new RDSTokenProvider($config);
         try {
             $password = $token_provider->getToken();
-            Log::info('Connecting to db using auth token '.$password);
 
             return $this->createPdoConnection(
                 $dsn, $username, $password, $options
             );
         } catch (Exception $e) {
             $password = $token_provider->getToken(true);
-            Log::info('Connecting to db using auth token '.$password);
 
             return $this->tryAgainIfCausedByLostConnectionOrBadToken(
                 $e, $dsn, $username, $password, $options
