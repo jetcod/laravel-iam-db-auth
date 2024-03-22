@@ -1,13 +1,13 @@
 {
-    "name": "pixelvide/laravel-iam-db-auth",
+    "name": "jetcod/laravel-iam-db-auth",
     "description": "AWS IAM db auth package for laravel",
-    "version": "3.1.0",
+    "version": "1.0.0",
     "type": "package",
     "license": "GPL-3.0-or-later",
     "authors": [
         {
-            "name": "Nitin Goyal",
-            "email": "nitingoyal.dev@gmail.com"
+            "name": "Hamid Ghorashi",
+            "email": "h.ghorashi@gmail.com"
         }
     ],
     "scripts": {},
@@ -19,13 +19,13 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "Pixelvide\\DBAuth\\": "src/"
+            "Jetcod\\DBAuth\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Pixelvide\\DBAuth\\IamDatabaseConnectorProvider"
+                "Jetcod\\DBAuth\\IamDatabaseConnectorProvider"
             ],
             "aliases": {
             }

@@ -10,7 +10,7 @@ for an MySQL/PGSQL connection.
 require this package with composer:
 
 ```shell
-composer require pixelvide/laravel-iam-db-auth
+composer require jetcod/laravel-iam-db-auth
 ```
 
 Add a missing variables in connection to the config array in config/database.php
