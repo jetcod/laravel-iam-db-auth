@@ -17,6 +17,13 @@ class RDSTokenProvider
     protected $config;
 
     /**
+     * Database connection string.
+     *
+     * @var string
+     */
+    protected $connectionString;
+
+    /**
      * @var AuthTokenGenerator
      */
     private $rds_auth_generator;
@@ -27,8 +34,10 @@ class RDSTokenProvider
      * @param  Array - AWS configuration
      * @return Void
      */
-    public function __construct(array $config)
+    public function __construct(string $dsn, array $config)
     {
+        $this->connectionString = md5($dsn);
+        $this->cacheKey = md5($dsn);
         $this->config = $config;
         $provider = CredentialProvider::defaultProvider();
         $this->rds_auth_generator = new AuthTokenGenerator($provider);
@@ -42,11 +51,13 @@ class RDSTokenProvider
      */
     public function getToken($refetch = false)
     {
-        if ($refetch) {
-            Cache::forget('db_token');
-        }
+        $key = md5($this->connectionString);
         
-        return Cache::remember('db_token', 10, function () {
+        if ($refetch) {
+            Cache::forget($key);
+        }
+
+        return Cache::remember($key, 10, function () {
             return $this->rds_auth_generator->createToken(
                 Arr::get($this->config, 'host').':'.Arr::get($this->config, 'port'),
                 Arr::get($this->config, 'aws_region'),

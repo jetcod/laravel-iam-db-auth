@@ -34,7 +34,7 @@ class MySqlConnector extends DefaultMySqlConnector
             Arr::get($config, 'username'),
         ];
 
-        $token_provider = new RDSTokenProvider($config);
+        $token_provider = new RDSTokenProvider($dsn, $config);
         try {
             $password = $token_provider->getToken();
 
