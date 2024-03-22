@@ -10,17 +10,31 @@
             "email": "h.ghorashi@gmail.com"
         }
     ],
-    "scripts": {},
     "require": {
-        "aws/aws-sdk-php-laravel": "^3.3.0",
-        "php": ">=7.3",
-        "ext-pdo": "*"
+        "php": "^8.0",
+        "ext-pdo": "*",
+        "aws/aws-sdk-php-laravel": "^3.9"
     },
-    "minimum-stability": "stable",
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.49",
+        "laravel/framework": "^9.0|^10.0",
+        "phpstan/phpstan": "^1.10",
+        "phpunit/phpunit": "^9.0|^10.0|^11.0"
+    },
     "autoload": {
         "psr-4": {
             "Jetcod\\DBAuth\\": "src/"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Jetcod\\DBAuth\\Test\\": "tests/"
+        }
+    },
+    "scripts": {
+        "phpcs-fix": "./vendor/bin/php-cs-fixer fix ",
+        "phpstan": "./vendor/bin/phpstan analyse --memory-limit=-1 src/",
+        "test": "./vendor/bin/phpunit --testdox "
     },
     "extra": {
         "laravel": {
@@ -31,7 +45,8 @@
             }
         }
     },
-    "require-dev": {
-        "laravel/framework": "^6.0|^7.0|^8.0|^9.0|^10.0"
-    }
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "stable"
 }
