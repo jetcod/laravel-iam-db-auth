@@ -40,7 +40,7 @@ class IamDatabaseConnectorProvider extends ServiceProvider
 
                                 break;
                         }
-                        Config::set('database.connections.' . $key . '.sslrootcert', "'{$certPath}'");
+                        Config::set('database.connections.' . $key . '.sslrootcert', "'" . trim((string) $certPath, "'") . "'");
 
                         $this->app->bind('db.connector.pgsql', PostgresConnector::class);
 
